@@ -13,27 +13,20 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: shimataro/ssh-key-action@v2
+      - uses: actions/checkout@v2
         with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          name: id_rsa
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
-      - uses: actions/checkout@v1
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Run check of pwd
         run: pwd
       - name: Run check of what's in pwd
         run: ls
       - name: Run a one-line script
         run: chmod +x ./sync.sh && ./sync.sh
-      - name: switching from HTTPS to SSH
-        run: git remote set-url origin ${{ secrets.ssh }}
+      # 配置 git
+      - name: config git
+        run: git config --global user.email "actions@gmail.com"&&git config --global user.name "ations"
       - name: check for changes
         run: git diff --numstat ticker.txt | awk '{if [[ $1+$2 > 100 ]]; then exit fi}'
-      - name: stage changed files
-        run: git add .
-      - name: commit changed files
-        run: git commit -m "sync sec latest data"
-      - name: fetch from main
-        run: git fetch origin main
-      - name: push code to main
-        run: git push origin HEAD:main
+      # 使用上面的 sh 脚本提交和推送
+      - name: submit
+        run: chmod +x ./commit.sh && ./commit.sh
