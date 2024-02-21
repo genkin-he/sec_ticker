@@ -16,17 +16,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      - name: Run check of pwd
-        run: pwd
-      - name: Run check of what's in pwd
-        run: ls
       - name: Run a one-line script
         run: chmod +x ./sync.sh && ./sync.sh
       # 配置 git
       - name: config git
         run: git config --global user.email "actions@gmail.com"&&git config --global user.name "ations"
-      - name: check for changes
-        run: git diff --numstat ticker.txt | awk '{if [[ $1+$2 > 100 ]]; then exit fi}'
       # 使用上面的 sh 脚本提交和推送
       - name: submit
         run: chmod +x ./commit.sh && ./commit.sh
