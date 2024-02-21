@@ -1,12 +1,12 @@
 name: sync sec stock cik
 
-# on:
-#   schedule:
-#     # * is a special character in YAML so you have to quote this string
-#     - cron: "*/2 * * * *"
-
 on:
-  [push]
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "*/10 * * * *"
+
+# on:
+#   [push]
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
       - name: switching from HTTPS to SSH
         run: git remote set-url origin ${{ secrets.ssh }}
       - name: check for changes
-        run: git status
+        run: git diff --numstat ticker.txt | awk '{if [[ $1+$2 > 100 ]]; then exit fi}'
       - name: stage changed files
         run: git add .
       - name: commit changed files

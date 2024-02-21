@@ -3,4 +3,4 @@ cookie="_4c_=%7B%22_4c_s_%22%3A%22fZHLTsMwEEV%2FpfI6Sf1KYmeHioRYFAQCtlVju03UtI4S
 curl --request GET https://www.sec.gov/include/ticker.txt --header \
 "cookie: $cookie" --header \
 "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" --header \
-"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" -o ./ticker_backup.txt
+"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" -o ./ticker.txt
