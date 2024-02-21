@@ -1,0 +1,34 @@
+name: sync sec stock cik
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "*/2 * * * *"
+
+# on:
+#   [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run check of pwd
+        run: pwd
+      - name: Run check of what's in pwd
+        run: ls
+      - name: Run a one-line script
+        run: chmod +x ./sync.sh && ./sync.sh
+      - name: switching from HTTPS to SSH
+        run: git remote set-url origin ${{ secrets.ssh }}
+      - name: check for changes
+        run: git status
+      - name: stage changed files
+        run: git add .
+      - name: commit changed files
+        run: git commit -m "sync sec latest data"
+      - name: fetch from main
+        run: git fetch origin main
+      - name: push code to main
+        run: git push origin HEAD:main
