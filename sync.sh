@@ -1,0 +1,6 @@
+# Goal: sync https://www.sec.gov/include/ticker.txt
+cookie="_4c_=%7B%22_4c_s_%22%3A%22fZHLTsMwEEV%2FpfI6Sf1KYmeHioRYFAQCtlVju03UtI4SUwNV%2Fp1xE%2FEoEtlkfObe0ejOCfnKHFBBciw4lQIzyniEdua9R8UJdbUOvyMq0JpKI%2FPMxDwtWcw1p7FINzKmRKapLjWT2qAIvYVZJKM4zSVjmA8RUu0044SUBVGBiEyISHC86cHhPoBwgaFsO6tflVu59zbIvClnvd5BQ5tjrczK19pVZz%2FF37Qy9bZyAePzFN128KBQ%2Bfqgrb%2B0TfTLJnIGtOys701wLqrO7s2MUALYQg5ouVZQdmZjuu4sqZxr%2B2I%2B994nW2u3jUmU3c9B1NcurN4bBY3jBCDOkcUje6kD1bOnxSPwux%2FkYXG%2FnFAbUg8rNFatmzAUDhWhm6vV8%2B11aMG5ckhZZMl4vVwIjobpBFikJCOSM5pCxK5Bhcg4Dt8wjj5fhPxWM0bEX%2FWYTBzWN4d%2FrPLSOgyf%22%7D; _ga=GA1.2.1298757986.1708427884; _ga_300V1CHKH1=GS1.1.1708494695.6.1.1708494695.0.0.0"
+curl --request GET https://www.sec.gov/include/ticker.txt --header \
+"cookie: $cookie" --header \
+"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" --header \
+"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" -o ./ticker_backup.txt
