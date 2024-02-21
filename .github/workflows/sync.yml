@@ -1,12 +1,12 @@
 name: sync sec stock cik
 
-on:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron: "*/2 * * * *"
-
 # on:
-#   [push]
+#   schedule:
+#     # * is a special character in YAML so you have to quote this string
+#     - cron: "*/2 * * * *"
+
+on:
+  [push]
 
 jobs:
   build:
