@@ -18,6 +18,8 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Sync sec ticker
         run: chmod +x ./sync.sh && ./sync.sh
+      - name: Sync sec company ticker
+        run: chmod +x ./sync_company_ticker.sh && ./sync_company_ticker.sh
       - name: config git
         run: git config --global user.email "actions@gmail.com"&&git config --global user.name "ations"
       - name: submit
