@@ -12,7 +12,7 @@ changes=$(git diff --numstat company_ticker.json | awk '{split($0,a," "); print(
 echo $changes
 if [ "$changes" == "1" ]; then
     echo "submit"
-    git add .&&git commit -m "sync latest data" && git push origin main
+    git add .&&git commit -m "sync latest company_ticker data" && git push origin main
 else
     echo "data error"
     exit 0
@@ -22,7 +22,7 @@ changes=$(git diff --numstat ticker.txt | awk '{split($0,a," "); print(a[1]+a[2]
 echo $changes
 if [ "$changes" == "1" ]; then
     echo "submit"
-    git add .&&git commit -m "sync latest data" && git push origin main
+    git add .&&git commit -m "sync latest ticker data" && git push origin main
 else
     echo "data error"
     exit 0
