@@ -21,6 +21,6 @@ jobs:
       - name: Sync sec company ticker
         run: chmod +x ./sync_company_ticker.sh && ./sync_company_ticker.sh
       - name: config git
-        run: git config --global user.email "actions@gmail.com"&&git config --global user.name "ations"
+        run: git config --global user.email "hemengzhi88@gmail.com"&&git config --global user.name "genkin-he"
       - name: submit
         run: chmod +x ./commit.sh && ./commit.sh
