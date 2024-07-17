@@ -17,7 +17,7 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Sync sec ticker
-        run: for f in ./scripts/*.py ; do [ -x "$f" ] && [ ! -d "$f" ] && echo $f && python3 $f ; done
+        run: chmod +x ./scripts/*.py && for f in ./scripts/*.py ; do [ -x "$f" ] && [ ! -d "$f" ] && echo $f && python3 $f ; done
       - name: config git
         run: git config --global user.email "hemengzhi88@gmail.com"&&git config --global user.name "genkin-he"
       - name: submit
