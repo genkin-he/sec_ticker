@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import logging
-import urllib.request  # 发送请求
+import requests  # 发送请求
 import gzip
 
 headers = {
@@ -23,21 +23,17 @@ headers = {
 }
 
 def run():
-    # request中放入参数，请求头信息
-    request = urllib.request.Request(
+    # 使用requests发送GET请求
+    response = requests.get(
         "https://www.sec.gov/files/company_tickers.json",
-        None,
-        headers,
+        headers=headers,
     )
 
-    # urlopen打开链接（发送请求获取响应）
-    response = urllib.request.urlopen(request)
-    if response.status == 200:
-        body = response.read().decode("utf-8")
+    if response.status_code == 200:
+        body = response.text
         print("company_ticker: ", body)
         with open("company_ticker.json", "w") as f:
             f.write(body)
-
     else:
         print("ticker request error: ", response)
 

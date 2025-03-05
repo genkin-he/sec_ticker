@@ -1,8 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import logging
-import urllib.request  # 发送请求
-import gzip
+import requests  # 使用requests库替代urllib
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
@@ -23,24 +22,16 @@ headers = {
 }
 
 def run():
-    # request中放入参数，请求头信息
-    request = urllib.request.Request(
-        "https://www.sec.gov/include/ticker.txt",
-        None,
-        headers,
-    )
-
-    # urlopen打开链接（发送请求获取响应）
-    response = urllib.request.urlopen(request)
-    if response.status == 200:
-        body = response.read().decode("utf-8")
+    # 使用requests发送GET请求
+    response = requests.get("https://www.sec.gov/include/ticker.txt", headers=headers)
+    
+    if response.status_code == 200:
+        body = response.text
         print("ticker: ", body)
         with open("ticker.txt", "w") as f:
             f.write(body)
-
     else:
         print("ticker request error: ", response)
-
 
 try:
     run()
