@@ -10,7 +10,7 @@ headers = {
     "cache-control": "no-cache",
     "pragma": "no-cache",
     "priority": "u=0, i",
-    "sec-ch-ua": '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    "sec-ch-ua": '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": '"macOS"',
     "sec-fetch-dest": "document",
@@ -18,13 +18,14 @@ headers = {
     "sec-fetch-site": "none",
     "sec-fetch-user": "?1",
     "upgrade-insecure-requests": "1",
-    "cookie": "ak_bmsc=58A73C16BE174431B4AA498FD3149148~000000000000000000000000000000~YAAQONgjF5rRj6+SAQAAilNivRnbWcLgb+diTqn7rG7kYL+fnlgynQ3zHq1Yw3BcoQQGuQJxuLPudtXgu1qFjZgqoq8V2jHXiLXYeDZBUEA4ukZ0kIMZjMWHaEzdX0uTMSPwZFB6QuB2jjgIH62a3Itp584y56gzber2AIo0qQvFflZ3dGS4yq1ghOB3rUrDfnpgAEFc6Y/c+dXRqfu9ZaBHfCJH7ZzPlD1qBmbAnlOT3rR6tT/SHev4xYpwNS8ckEiVv/4Ueun/F+i1DfcLKBbzzakt0Fq4mkiOGA7/Z0M6/+NfODqK2PUTMUcF+zPu3N4uJ1/yLmXmZJCYDAUcdxiurqGcHBavQ/W8I2VZ65ICNDAW2zW2OWBot1zTcqTB7/30jb2omA==; bm_sv=94DD1CDE2A616FF82DA86B9D19F20C34~YAAQONgjFxnZj6+SAQAAKxBjvRkyKrGVLpwqmbMwisTr3N4hQSu4AMbttoLPzIaXdVXcSe3Q2lWt5w7TmWk8SRBRZg+zVcU3fkYxEoNZkvB+Df5UNuvcrJKFL/D2AAZtECptbHJYexSf0LbgQRPVX44vXNfsQ1g+Tkr8Af86gX8rr4B0XDv/B3SPpfogeOKNsEP3WvF1i4ckV2qJsDbZtYA2S/iLtGp8beULZEgONuZ8CQd+46hntkPG4rtT~1",
+    "cookie": "_ga=GA1.1.683960344.1749707305; nmstat=175cc488-2c28-1609-e5f9-444923491bcc; _ga_300V1CHKH1=GS2.1.s1749707305$o1$g1$t1749707504$j57$l0$h0; _ga_CSLL4ZEK4L=GS2.1.s1749707305$o1$g1$t1749707504$j57$l0$h0; ak_bmsc=17D52E7A890B0FC3C696A2922B62B5A8~000000000000000000000000000000~YAAQCyoSAq1J4liXAQAARY1RdxwlA1h3IvDea8npc3u/h4poeX8CBV287s4x1GfiCVfejTlu6LvHn3nI70jGP1cx10b/Rza8VtXDSrkGfbjJSfcMP522ohVoiQLhPJn3w+ZhbjeQybJDjGnSktZTE/y5OT6btKeszd7VXorvsNaLnLmkOOHcM5HBz56Xf0HRosGQkwGHE7qIwlyjmoqJHGKpix+C6d1125hr706IJQ3teJw+pwvFgV/+xVWRtxGFrXscljPHoKUuLmTgNn1VdoFEW3aTWGCkABljW67J9iiJFqDQJuO5oGFUszE2a5itM0vGLEVjoXm/qeT5mOSiXKnkEnB+bMQLesbdCtwYN8K1Uoyn7qp4JUvZZxpTdGrhUTaPb2HrR3QF; bm_sv=B89C925ABA0A72218BDDB0F96F201509~YAAQCyoSAu1Q4liXAQAABWlSdxzEBk4afXIJMxsuCsbkpWcAm8/Xq+5HY6EaArWs56Yw1hNsMq+tDoe3PowMIRN9ec6uXvXSBFLFzSSk5JU8yTJfF4BrIfCUXAMq98x1f26gg/wqZ4dkJ1CGZVd3GW6mkK41/v6boOqmA6o+NMx5PIiXZDjqz3zZeuepbV4hH/H0ZYCxSnUsDvVw+lru7QnQkg1lwD/yE1gWhdqWaIYv4i4EYrdJ+omPxt5H~1",
 }
+
 
 def run():
     # 使用requests发送GET请求
     response = requests.get("https://www.sec.gov/include/ticker.txt", headers=headers)
-    
+
     if response.status_code == 200:
         body = response.text
         print("ticker: ", body)
@@ -32,6 +33,7 @@ def run():
             f.write(body)
     else:
         print("ticker request error: ", response)
+
 
 try:
     run()
