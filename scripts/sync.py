@@ -1,8 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import logging
-import urllib.request  # 发送请求
-import gzip
+import requests  # 使用requests库替代urllib
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
@@ -11,7 +10,7 @@ headers = {
     "cache-control": "no-cache",
     "pragma": "no-cache",
     "priority": "u=0, i",
-    "sec-ch-ua": '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    "sec-ch-ua": '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": '"macOS"',
     "sec-fetch-dest": "document",
@@ -19,25 +18,19 @@ headers = {
     "sec-fetch-site": "none",
     "sec-fetch-user": "?1",
     "upgrade-insecure-requests": "1",
-    "cookie": "ak_bmsc=58A73C16BE174431B4AA498FD3149148~000000000000000000000000000000~YAAQONgjF5rRj6+SAQAAilNivRnbWcLgb+diTqn7rG7kYL+fnlgynQ3zHq1Yw3BcoQQGuQJxuLPudtXgu1qFjZgqoq8V2jHXiLXYeDZBUEA4ukZ0kIMZjMWHaEzdX0uTMSPwZFB6QuB2jjgIH62a3Itp584y56gzber2AIo0qQvFflZ3dGS4yq1ghOB3rUrDfnpgAEFc6Y/c+dXRqfu9ZaBHfCJH7ZzPlD1qBmbAnlOT3rR6tT/SHev4xYpwNS8ckEiVv/4Ueun/F+i1DfcLKBbzzakt0Fq4mkiOGA7/Z0M6/+NfODqK2PUTMUcF+zPu3N4uJ1/yLmXmZJCYDAUcdxiurqGcHBavQ/W8I2VZ65ICNDAW2zW2OWBot1zTcqTB7/30jb2omA==; bm_sv=94DD1CDE2A616FF82DA86B9D19F20C34~YAAQONgjFxnZj6+SAQAAKxBjvRkyKrGVLpwqmbMwisTr3N4hQSu4AMbttoLPzIaXdVXcSe3Q2lWt5w7TmWk8SRBRZg+zVcU3fkYxEoNZkvB+Df5UNuvcrJKFL/D2AAZtECptbHJYexSf0LbgQRPVX44vXNfsQ1g+Tkr8Af86gX8rr4B0XDv/B3SPpfogeOKNsEP3WvF1i4ckV2qJsDbZtYA2S/iLtGp8beULZEgONuZ8CQd+46hntkPG4rtT~1",
+    "cookie": "ak_bmsc=D13E24CF001C6F8FBFC8A6BB9801437B~000000000000000000000000000000~YAAQpoA3Fxde/tOYAQAADXjX8xy68qhnXFW56LAlcyexll/p6CEfTpjPAKQQx0K/heOa8eHUUGV1szfbvAwYal62wEXNZhdP0JP7cYtqg0peYHTMob63M0LuWxIVB4P8QSUtiCJOImQ9cfuP0xOU4lKzAy9ehs/MYs+KMUz/OHnNjAydU03tqIq/m1ZV8Gc2n7Ccogyy4oyrKbPWzxk4izW4xdebTwoBrQWDuv2Jvz5Ag+Gs75cQjJYEZG/amdT3zh5ij57OljPOaNRISUQQLDnTEmlMFYZ++0SmtPrQIwARAhyFrurwKOaBLEpfhqnel8PuTb2NSM7tVqeUfN5y4gEsjZlsvxkxcvtp09gA7bz0GBUWDYV+ebW4PGwwX7T5+OVKCO9DLw==; bm_sv=5CBCBDEC9C9344E8659924C01F702ACB~YAAQpoA3F3fa/tOYAQAAKljY8xxdJaGV1RkDp7WJbMdk1rP0Ku5AqMLH4wWn+3Bfd2J2B9IzpvXESh79YtZfBsH8zzl+IqfOh66WOYCFSdKA03X+GM8aeZN3fuUPMD/Jja60vTerwf2pXcDcuPQxtACHQb/v9uqIdRP/QEQce7hVeBDjDeEpvRoWTZoTPa9AWlNI0nosR+mFDFKOkMvrOGUC8I8rlRNKFHfnDFFCxIv0G3l3S7kulspS6TPC~1"
 }
 
-def run():
-    # request中放入参数，请求头信息
-    request = urllib.request.Request(
-        "https://www.sec.gov/include/ticker.txt",
-        None,
-        headers,
-    )
 
-    # urlopen打开链接（发送请求获取响应）
-    response = urllib.request.urlopen(request)
-    if response.status == 200:
-        body = response.read().decode("utf-8")
+def run():
+    # 使用requests发送GET请求
+    response = requests.get("https://www.sec.gov/include/ticker.txt", headers=headers)
+
+    if response.status_code == 200:
+        body = response.text
         print("ticker: ", body)
         with open("ticker.txt", "w") as f:
             f.write(body)
-
     else:
         print("ticker request error: ", response)
 
